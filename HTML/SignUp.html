@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In</title>
+    <title>Sign Up</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -80,16 +80,16 @@
 </head>
 <body>
     <div class="container">
-        <h2>Sign In</h2>
+        <h2>Sign Up</h2>
         <!-- Added novalidate to disable the browser's default validation -->
-        <form id="sign-in-form" action="/signin" method="POST" novalidate>
+        <form id="sign-up-form" action="/signup" method="POST" novalidate>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first_name" placeholder="First Name" required>
+                <input type="text" id="first-name" name="first_name" placeholder="John" required>
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last_name" placeholder="Last Name" required>
+                <input type="text" id="last-name" name="last_name" placeholder="Doe" required>
             </div>
             <div class="form-group">
                 <label for="phone-number">Phone Number</label>
@@ -103,12 +103,17 @@
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="password" name="password" placeholder="********" required>
             </div>
-            <button type="submit" class="btn">Sign In</button>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" placeholder="********" required>
+                <span id="password-error" class="error">Passwords do not match.</span>
+            </div>
+            <button type="submit" class="btn">Sign Up</button>
         </form>
         <div class="footer">
-            <p>Don't have an account? <a href="http://127.0.0.1:5501/HTML/SignUp.html">Sign Up</a></p>
+            <p>Already have an account? <a href="http://127.0.0.1:5501/HTML/index.html">Sign In</a></p>
         </div>
     </div>
 
@@ -118,7 +123,7 @@
         const phoneRegex = /^\d{10}$/; // Ensures exactly 10 digits
 
         // Form submit event handler
-        document.getElementById('sign-in-form').addEventListener('submit', function(event) {
+        document.getElementById('sign-up-form').addEventListener('submit', function(event) {
             let isValid = true;
 
             // Email validation
@@ -139,6 +144,17 @@
                 isValid = false;
             } else {
                 phoneError.style.display = 'none';
+            }
+
+            // Password and Confirm Password validation
+            const passwordInput = document.getElementById('password');
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const passwordError = document.getElementById('password-error');
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                passwordError.style.display = 'inline';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
             }
 
             // If invalid, prevent form submission
