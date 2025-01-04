@@ -7,6 +7,7 @@ body {
     height: 100vh;
     margin: 0;
 }
+
 .container {
     background-color: #fff;
     padding: 50px;
@@ -15,18 +16,22 @@ body {
     width: 100%;
     max-width: 400px;
 }
+
 .container h2 {
     margin-bottom: 20px;
     text-align: center;
 }
+
 .form-group {
     margin-bottom: 15px;
 }
+
 .form-group label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
+
 .form-group input {
     width: 100%;
     padding: 10px;
@@ -34,15 +39,18 @@ body {
     border-radius: 4px;
     font-size: 16px;
 }
+
 .form-group input:focus {
     border-color: #007BFF;
     outline: none;
 }
+
 .form-group .error {
     color: red;
     font-size: 12px;
     display: none;
 }
+
 .btn {
     width: 100%;
     padding: 10px;
@@ -54,18 +62,22 @@ body {
     cursor: pointer;
     margin-top: 10px;
 }
+
 .btn:hover {
     background-color: #0056b3;
 }
+
 .footer {
     margin-top: 20px;
     text-align: center;
     font-size: 14px;
 }
+
 .footer a {
     color: #007BFF;
     text-decoration: none;
 }
+
 .footer a:hover {
     text-decoration: underline;
 }
