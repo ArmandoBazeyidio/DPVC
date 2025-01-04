@@ -4,79 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        .container h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .form-group input:focus {
-            border-color: #007BFF;
-            outline: none;
-        }
-        .form-group .error {
-            color: red;
-            font-size: 12px;
-            display: none;
-        }
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="\CSS\index.css">
 </head>
 <body>
     <div class="container">
@@ -98,29 +26,6 @@
         </div>
     </div>
 
-    <script>
-        // Regular expression for email validation
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-        // Form submit event handler
-        document.getElementById('sign-in-form').addEventListener('submit', function(event) {
-            let isValid = true;
-
-            // Email validation
-            const emailInput = document.getElementById('email');
-            const emailError = document.getElementById('email-error');
-            if (!emailRegex.test(emailInput.value)) {
-                emailError.style.display = 'inline';
-                isValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            // If invalid, prevent form submission
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
+    <script src="\Javascript\index.js"></script>
 </body>
 </html>

@@ -4,92 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 50px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-        }
-        .container h2 {
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        .form-group input:focus {
-            border-color: #007BFF;
-            outline: none;
-        }
-        .form-group .error {
-            color: red;
-            font-size: 12px;
-            display: none;
-        }
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 14px;
-        }
-        .footer a {
-            color: #007BFF;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="\CSS\styles.css">
 </head>
 <body>
     <div class="container">
         <h2>Sign Up</h2>
-        <!-- Added novalidate to disable the browser's default validation -->
         <form id="sign-up-form" action="/signup" method="POST" novalidate>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first_name" placeholder="John" required>
+                <input type="text" id="first-name" name="first_name" placeholder="First Name" required>
+                <span id="first-name-error" class="error">First name must contain only letters.</span>
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last_name" placeholder="Doe" required>
+                <input type="text" id="last-name" name="last_name" placeholder="Last Name" required>
+                <span id="last-name-error" class="error">Last name must contain only letters.</span>
             </div>
             <div class="form-group">
                 <label for="phone-number">Phone Number</label>
@@ -104,11 +33,12 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="********" required>
+                <span id="password-error" class="error">Password must have at least 10 characters, 1 number, and 1 special character.</span>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm_password" placeholder="********" required>
-                <span id="password-error" class="error">Passwords do not match.</span>
+                <span id="confirm-password-error" class="error">Passwords do not match.</span>
             </div>
             <button type="submit" class="btn">Sign Up</button>
         </form>
@@ -116,52 +46,6 @@
             <p>Already have an account? <a href="http://127.0.0.1:5501/HTML/index.html">Sign In</a></p>
         </div>
     </div>
-
-    <script>
-        // Regular expressions for validation
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const phoneRegex = /^\d{10}$/; // Ensures exactly 10 digits
-
-        // Form submit event handler
-        document.getElementById('sign-up-form').addEventListener('submit', function(event) {
-            let isValid = true;
-
-            // Email validation
-            const emailInput = document.getElementById('email');
-            const emailError = document.getElementById('email-error');
-            if (!emailRegex.test(emailInput.value)) {
-                emailError.style.display = 'inline';
-                isValid = false;
-            } else {
-                emailError.style.display = 'none';
-            }
-
-            // Phone number validation
-            const phoneInput = document.getElementById('phone-number');
-            const phoneError = document.getElementById('phone-error');
-            if (!phoneRegex.test(phoneInput.value)) {
-                phoneError.style.display = 'inline';
-                isValid = false;
-            } else {
-                phoneError.style.display = 'none';
-            }
-
-            // Password and Confirm Password validation
-            const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('confirm-password');
-            const passwordError = document.getElementById('password-error');
-            if (passwordInput.value !== confirmPasswordInput.value) {
-                passwordError.style.display = 'inline';
-                isValid = false;
-            } else {
-                passwordError.style.display = 'none';
-            }
-
-            // If invalid, prevent form submission
-            if (!isValid) {
-                event.preventDefault();
-            }
-        });
-    </script>
+    <script src="\Javascript\script.js"></script>
 </body>
 </html>
