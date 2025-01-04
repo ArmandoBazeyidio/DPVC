@@ -81,15 +81,16 @@
 <body>
     <div class="container">
         <h2>Sign Up</h2>
-        <!-- Added novalidate to disable the browser's default validation -->
         <form id="sign-up-form" action="/signup" method="POST" novalidate>
             <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" name="first_name" placeholder="John" required>
+                <input type="text" id="first-name" name="first_name" placeholder="First Name" required>
+                <span id="first-name-error" class="error">First name must contain only letters.</span>
             </div>
             <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" name="last_name" placeholder="Doe" required>
+                <input type="text" id="last-name" name="last_name" placeholder="Last Name" required>
+                <span id="last-name-error" class="error">Last name must contain only letters.</span>
             </div>
             <div class="form-group">
                 <label for="phone-number">Phone Number</label>
@@ -104,11 +105,12 @@
             <div class="form-group">
                 <label for="password">Password</label>
                 <input type="password" id="password" name="password" placeholder="********" required>
+                <span id="password-error" class="error">Password must have at least 10 characters, 1 number, and 1 special character.</span>
             </div>
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm_password" placeholder="********" required>
-                <span id="password-error" class="error">Passwords do not match.</span>
+                <span id="confirm-password-error" class="error">Passwords do not match.</span>
             </div>
             <button type="submit" class="btn">Sign Up</button>
         </form>
@@ -118,13 +120,33 @@
     </div>
 
     <script>
-        // Regular expressions for validation
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        const phoneRegex = /^\d{10}$/; // Ensures exactly 10 digits
+        const phoneRegex = /^\d{10}$/;
+        const nameRegex = /^[a-zA-Z]+$/;
+        const passwordRegex = /^(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/;
 
-        // Form submit event handler
         document.getElementById('sign-up-form').addEventListener('submit', function(event) {
             let isValid = true;
+
+            // First Name validation
+            const firstNameInput = document.getElementById('first-name');
+            const firstNameError = document.getElementById('first-name-error');
+            if (!nameRegex.test(firstNameInput.value)) {
+                firstNameError.style.display = 'inline';
+                isValid = false;
+            } else {
+                firstNameError.style.display = 'none';
+            }
+
+            // Last Name validation
+            const lastNameInput = document.getElementById('last-name');
+            const lastNameError = document.getElementById('last-name-error');
+            if (!nameRegex.test(lastNameInput.value)) {
+                lastNameError.style.display = 'inline';
+                isValid = false;
+            } else {
+                lastNameError.style.display = 'none';
+            }
 
             // Email validation
             const emailInput = document.getElementById('email');
@@ -136,7 +158,7 @@
                 emailError.style.display = 'none';
             }
 
-            // Phone number validation
+            // Phone Number validation
             const phoneInput = document.getElementById('phone-number');
             const phoneError = document.getElementById('phone-error');
             if (!phoneRegex.test(phoneInput.value)) {
@@ -146,18 +168,27 @@
                 phoneError.style.display = 'none';
             }
 
-            // Password and Confirm Password validation
+            // Password validation
             const passwordInput = document.getElementById('password');
-            const confirmPasswordInput = document.getElementById('confirm-password');
             const passwordError = document.getElementById('password-error');
-            if (passwordInput.value !== confirmPasswordInput.value) {
+            if (!passwordRegex.test(passwordInput.value)) {
                 passwordError.style.display = 'inline';
                 isValid = false;
             } else {
                 passwordError.style.display = 'none';
             }
 
-            // If invalid, prevent form submission
+            // Confirm Password validation
+            const confirmPasswordInput = document.getElementById('confirm-password');
+            const confirmPasswordError = document.getElementById('confirm-password-error');
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordError.style.display = 'inline';
+                isValid = false;
+            } else {
+                confirmPasswordError.style.display = 'none';
+            }
+
+            // Prevent form submission if invalid
             if (!isValid) {
                 event.preventDefault();
             }
